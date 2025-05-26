@@ -31,6 +31,42 @@ window.addEventListener('scroll', () => {
     });
 });
 
+function slowScrollToElement(target, duration = 1000) {
+  const start = window.scrollY;
+  const end = target.getBoundingClientRect().top + window.scrollY;
+  const distance = end - start;
+  const startTime = performance.now();
+
+  function scroll(currentTime) {
+    const elapsed = currentTime - startTime;
+    const progress = Math.min(elapsed / duration, 1); // clamp between 0 and 1
+
+    window.scrollTo(0, start + distance * easeInOutCubic(progress));
+
+    if (progress < 1) {
+      requestAnimationFrame(scroll);
+    }
+  }
+
+  function easeInOutCubic(t) {
+    return t < 0.5
+      ? 4 * t * t * t
+      : 1 - Math.pow(-2 * t + 2, 3) / 2;
+  }
+
+  requestAnimationFrame(scroll);
+}
+
+document.querySelector('.container').addEventListener('click', (e) => {
+    const containerHeight = e.currentTarget.offsetHeight;
+    if (e.clientY > containerHeight / 2) {
+        // document.querySelector('.ide-window').scrollIntoView({
+            //   behavior: 'smooth'
+            // });
+        slowScrollToElement(document.querySelector('.ide-window'), 2000); // 2 seconds
+    }
+});
+
 // === IDE Mock File Viewer ===
 const filePaths = [
     "Cargo.toml",
