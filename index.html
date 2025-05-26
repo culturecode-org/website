@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>culturecode</title>
+        <link rel="icon" type="image/x-icon" href="/images/favicon.png"> 
+        <link
+        href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@700&display=swap"
+        rel="stylesheet"
+        />
+        <link rel="stylesheet" href="style.css" />
+        <!-- Prism.js for Rust/Markdown highlighting -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-rust.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-markdown.min.js"></script>
+    </head>
+    <body>
+        <!-- Hero / Branding Section -->
+        <div class="container">
+            <div class="logo">
+                <span class="logo-text">culture</span>
+                <span class="color-blocks-container">
+                    <span class="code-block">code</span>
+                    <div class="color-blocks">
+                        <div class="block block-1"></div>
+                        <div class="block block-2"></div>
+                        <div class="block block-3"></div>
+                        <div class="block block-4"></div>
+                    </div>
+                </span>
+            </div>
+        </div>
+
+        <!-- IDE Window Section -->
+        <div class="ide-window">
+            <div class="ide">
+                <div class="ide-header">
+                    <div class="window-controls">
+                        <span class="control red"></span>
+                        <span class="control yellow"></span>
+                        <span class="control green"></span>
+                    </div>
+                </div>
+                <div class="explorer" id="explorer"></div>
+                <div class="editor">
+                    <div class="editor-pane">
+                        <div class="code-area">
+                            <pre><code id="markdown-content" class="language-markdown"></code></pre>
+                            <pre><code id="file-content" class="language-rust"></code></pre>
+                        </div>
+                        <div class="run-bar">
+                            <button class="run-button">▶ Run</button>
+                        </div>
+                        <div class="resizer" id="resizer"></div>
+                        <div class="output" id="output">
+                            <div class="terminal-line">$ cargo run --bin file</div>
+                            <div class="output-content" id="output-content">// Output will appear here</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <script src="script.js"></script>
+    </body>
+</html>

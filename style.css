@@ -1,0 +1,348 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #252221;
+  font-family: 'JetBrains Mono', monospace;
+  color: #F6F6E7;
+  overflow-x: hidden;
+  background: radial-gradient(circle at bottom, #302F2F, #252221, #252221);
+}
+
+.container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  z-index: 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  font-size: 48px;
+  font-weight: bold;
+  color: #F6F6E7;
+  text-transform: lowercase;
+  letter-spacing: 0;
+  z-index: 2;
+}
+
+.logo-text {
+  margin-right: 0.1em;
+}
+
+.color-blocks-container {
+  position: relative;
+  display: inline-block;
+}
+
+.code-block {
+  background-color: #F6F6E7;
+  color: #252221;
+  padding: 0 3px;
+  line-height: 1;
+  display: inline-block;
+  position: relative;
+  z-index: 2;
+  height: 100%;
+}
+
+.color-blocks {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  display: flex;
+  height: calc(100vh - 1em);
+  z-index: 1;
+}
+
+.block {
+  height: 100vh;
+  transition: height 1s ease-in-out;
+}
+.block-1 { background-color: #C3BBE3; }
+.block-2 { background-color: #FAD1A3; }
+.block-3 { background-color: #CCEBB1; }
+.block-4 { background-color: #F07777; }
+
+/* IDE Styling */
+.ide-window {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: transparent;
+  z-index: 3;
+}
+.ide {
+  width: 90%;
+  max-width: 900px;
+  height: 600px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  backdrop-filter: blur(12px);
+  background: rgba(30, 30, 30, 0.35); /* subtle translucent */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.4);
+  font-family: 'JetBrains Mono', monospace;
+  color: #e8e8d3;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+.explorer {
+  width: 200px;
+  background: rgba(28, 28, 28, 0.6);
+  padding: 10px;
+  border-right: 1px solid #333;
+  font-size: 14px;
+  overflow-y: auto;
+  backdrop-filter: blur(10px);
+  padding-top: 40px;
+}
+.folder {
+  color: #FAD1A3;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+.file {
+  padding: 4px 8px;
+  color: #e8e8d3;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.file:hover,
+.file.selected {
+  background-color: #303030;
+}
+
+.editor {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  background: transparent;
+  overflow: hidden;
+}
+
+/* Container for code and output */
+.editor-pane {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.code-area {
+  flex: 1;
+  overflow: auto;
+  min-height: 0;
+}
+
+.run-bar {
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  background: rgba(28, 28, 28, 0.3);
+  backdrop-filter: blur(8px);
+  flex-shrink: 0;
+  z-index: 1;
+}
+
+.resizer {
+  height: 6px;
+  cursor: row-resize;
+  background: rgba(255, 255, 255, 0.05);
+  flex-shrink: 0;
+}
+
+.output {
+  height: 200px;
+  background: rgba(28, 28, 28, 0.4);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem 1.5rem;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  white-space: pre-wrap;
+  display: none;
+  overflow: auto;
+  flex-shrink: 0;
+}
+
+pre[class*="language-"] {
+  margin: 0;
+  padding: 1.5rem 0 1.5rem 3.5rem;
+  font-size: 14px;
+  line-height: 1.6;
+  white-space: pre;
+  position: relative;
+}
+/* Line numbers */
+pre[class*="language-"]::before {
+  content: attr(data-line-numbers);
+  position: absolute;
+  top: 1.5rem;
+  left: 1.2rem;
+  color: #666;
+  font-size: 14px;
+  text-align: right;
+  white-space: pre;
+  line-height: 1.6;
+  font-variant-numeric: tabular-nums;
+}
+/* Prism + Jellybeans color scheme */
+code[class*="language-"] {
+  background: transparent;
+  color: #F6F6E7;
+}
+
+.token.comment {
+  color: #888888;
+  font-style: italic;
+}
+
+/* Keywords */
+.token.keyword {
+  color: #C6B7EE; /* lavender */
+}
+
+/* Function names */
+.token.function {
+  color: #FAD1A3; /* peach */
+}
+
+/* Strings */
+.token.string {
+  color: #CCEBB1; /* mint */
+}
+
+/* Numbers, booleans */
+.token.number,
+.token.boolean,
+.token.symbol {
+  color: #F07777; /* coral */
+}
+
+/* Structs, Enums, Types */
+.token.class-name {
+  color: #F1CD82; /* soft pink */
+}
+
+/* Crates, paths, module parts */
+.token.namespace {
+  color: #AFCFF0; /* light blue */
+  opacity: 0.85;
+}
+
+.token.constant,
+.token.tag,
+.token.operator {
+  color: #AECCEB;
+}
+
+/* Comments */
+.token.comment {
+  color: #888;
+  font-style: italic;
+}
+
+.run-bar {
+  padding: 0.75rem 1.5rem;
+  border-top: 1px solid rgba(255,255,255,0.05);
+  background: rgba(28, 28, 28, 0.3);
+  backdrop-filter: blur(8px);
+}
+
+.run-button {
+  background: transparent;
+  border: 1px solid #FAD1A3;
+  color: #FAD1A3;
+  padding: 4px 12px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.run-button:hover {
+  background-color: rgba(250, 209, 163, 0.1);
+}
+
+.output {
+  display: none;
+  background: rgba(28, 28, 28, 0.4);
+  border-top: 1px solid rgba(255,255,255,0.05);
+  padding: 1rem 1.5rem;
+  font-size: 13px;
+  font-family: 'JetBrains Mono', monospace;
+  line-height: 1.5;
+  white-space: pre-wrap;
+}
+
+.terminal-line {
+  color: #888888;
+  margin-bottom: 0.5rem;
+}
+
+.output.show {
+  display: block;
+}
+
+/* Mobile tweaks */
+@media (max-width: 768px) {
+  .ide {
+    flex-direction: column;
+    height: auto;
+  }
+  .explorer {
+    width: 100%;
+    border-right: none;
+    border-bottom: 1px solid #333;
+    display: flex;
+    flex-wrap: wrap;
+  }
+  .file {
+    flex: 1 1 50%;
+    padding: 6px;
+    text-align: center;
+  }
+  .editor {
+    padding: 10px;
+  }
+  pre[class*="language-"]::before {
+    left: 0.5rem;
+  }
+}
+
+.ide-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 12px;
+  background: transparent;
+  z-index: 10;
+  pointer-events: none; /* So buttons don’t block interaction */
+}
+
+.window-controls {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto; /* Re-enable buttons */
+}
+
+.control {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.control.red { background-color: #ff5f56; }
+.control.yellow { background-color: #ffbd2e; }
+.control.green { background-color: #27c93f; }
