@@ -76,6 +76,10 @@ const filePaths = [
     "sections/value_proposition.rs",
     "sections/quote.rs",
     "manifest/es.md",
+    "community/README.md",
+    "community/ssh_config",
+    "community/culturecode.key",
+    "community/entry.condition",
 ];
 
 const files = {};

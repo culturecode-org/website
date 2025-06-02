@@ -1,0 +1,19 @@
+ENTRY_CONDITION=UNSET
+
+# Attempting connection without reflection may result in partial connection.
+# Full access requires: presence, judgment, and a functioning terminal.
+
+# You may override this condition by exporting:
+# export CULTIVATION=true
+
+# Note: this key may appear private, but it is shared.
+
+# Known values:
+#   HOST: join.culturecode.dev
+#   ROOM: 1110
+#   USER: discord
+#   METHOD: your call
+
+The gate is open for everyone.
+The lock was never the point.
+The key is whether you showed up.

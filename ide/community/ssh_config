@@ -1,0 +1,8 @@
+Host culturecode.dev
+    HostName join.culturecode.dev
+    Port 1110
+    User discord
+    IdentityFile ~/.ssh/culturecode.key
+    IdentitiesOnly yes
+    RequestTTY no
+    LogLevel QUIET
